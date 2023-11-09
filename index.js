@@ -1,7 +1,7 @@
 const express = require('express'),
 app = express(),
 PORT = process.env.PORT || 9000,
-router = require('./routes/user.router')
+router = require('./routes/router')
 
 require('dotenv').config()
 app.use(express.json({strict: false}))
