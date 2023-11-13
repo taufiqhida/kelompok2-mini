@@ -3,7 +3,6 @@ const {permissions} = require('../models')
 module.exports = {
     create: async(req, res, next)=>{
         try{
-
             const newPermisson = await permissions.create({
                 data: {
                     module: req.body.module,
