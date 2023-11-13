@@ -3,7 +3,7 @@ const { users, roles } = require('../models'),
         token = require('../utils/token'),
         bcrypt = require('bcrypt');
         jwt = require('jsonwebtoken');
-;
+
 const secret_key = process.env.JWT_KEY || 'no_secret'
 
 module.exports = {

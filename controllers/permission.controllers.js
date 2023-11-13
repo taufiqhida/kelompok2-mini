@@ -1,7 +1,7 @@
 const {permissions} = require('../models')
 
 module.exports = {
-    create: async(req, res)=>{
+    create: async(req, res, next)=>{
         try{
 
             const newPermisson = await permissions.create({
@@ -13,13 +13,13 @@ module.exports = {
             })
 
             return res.status(201).json({
-                data
+                newPermisson
             })
         }catch(error){
             return next(error);
         }
     },
-    getPermisionById: async(req, res)=>{
+    getPermisionById: async(req, res, next)=>{
         try {
             const permission = await permissions.findUnique({
                 where:{
@@ -40,18 +40,18 @@ module.exports = {
             return next(error);
         }
     },
-    getAllPermision: async(req, res)=>{
+    getAllPermision: async(req, res, next)=>{
         try {
             const permission = await permissions.findMany();
 
-            return res.status(200).jsom({
+            return res.status(200).json({
                 permission
             })
         } catch (error) {
             return next(error);
         }
     },
-    update : async(req, res)=>{
+    update : async(req, res, next)=>{
         try {
             const updatePermision = await permissions.update({
                 where:{
@@ -72,7 +72,7 @@ module.exports = {
             return next(error);
         }
     },
-    destroy: async(req, res) =>{
+    destroy: async(req, res, next   ) =>{
         try {
             const deletePermision = await permissions.delete({
                 where: {
@@ -81,6 +81,7 @@ module.exports = {
             })
 
             return res.status(204).json({
+                data : deletePermision,
                 message: "delete successfull"
             })
         } catch (error) {
