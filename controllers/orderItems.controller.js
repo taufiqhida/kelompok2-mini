@@ -66,7 +66,7 @@ module.exports = {
 
     getId: async (req, res) => {
         try {
-          const orderItem = await productVariants.findUnique({
+          const orderItem = await orderItems.findUnique({
             where: {
               id: parseInt(req.params.id)
             }
@@ -127,7 +127,7 @@ module.exports = {
             })
           }
     
-          await productVariants.delete({
+          await orderItems.delete({
             where: { id: parseInt(req.params.id) }
           })
     
