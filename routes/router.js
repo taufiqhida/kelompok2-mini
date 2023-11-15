@@ -6,7 +6,8 @@ const express = require("express"),
   ordersRouter = require("./orders.router"),
   productVariantsRouter = require("./productVariants.router"),
   orderItemsRouter = require("./orderItems.router"),
-  rolesRouter = require("./roles.router")
+  rolesRouter = require("./roles.router"),
+  adminProductController = require("./admin.product.router")
 
 
 router.use("/user", userRouter);
@@ -16,5 +17,6 @@ router.use("/orders", ordersRouter);
 router.use("/productVariants", productVariantsRouter);
 router.use("/orderItems", orderItemsRouter);
 router.use("/roles", rolesRouter)
+router.use("/product", adminProductController )
 
 module.exports = router;
