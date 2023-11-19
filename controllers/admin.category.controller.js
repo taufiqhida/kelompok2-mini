@@ -26,19 +26,19 @@ module.exports = {
         data: data,
       });
     } catch (error) {
-      return next(error);
+      res.status(400).json({ error: error.message });
     }
   },
 
   getCategoryById: async (req, res) => {
     try {
       const data = await categories.findUnique({
-        where : {
-          id: parseInt(req.params.id)
-        }
+        where: {
+          id: parseInt(req.params.id),
+        },
       });
 
-      if (!data){
+      if (!data) {
         return res.status(404).json({
           error: "category not found",
         });
@@ -46,7 +46,7 @@ module.exports = {
 
       return res.status(200).json({ data });
     } catch (error) {
-      return next(error);
+      res.status(400).json({ error: error.message });
     }
   },
 
@@ -56,7 +56,7 @@ module.exports = {
 
       return res.status(200).json({ data });
     } catch (error) {
-      return next(error);
+      res.status(400).json({ error: error.message });
     }
   },
 
@@ -74,28 +74,26 @@ module.exports = {
 
       return res.status(200).json({
         message: "Content updated successfully",
-        data : data
+        data: data,
       });
     } catch (error) {
-      next(error);
+      res.status(400).json({ error: error.message })
     }
   },
 
-  destroy: async (req, res, next) => {
+  destroy: async (req, res) => {
     try {
+      const data = await categories.delete({
+        where: {
+          id: parseInt(req.params.id),
+        },
+      });
 
-        const data = await categories.delete({
-            where: {
-                id: parseInt(req.params.id)
-            }
-        })
-
-        return res.status(204).json({
-          message : "Delete Successfully"
-        })
-        
+      return res.status(204).json({
+        message: "Delete Successfully",
+      });
     } catch (error) {
-        next(error)
+      res.status(400).json({ error: error.message });
     }
-}
+  },
 };
